@@ -2,12 +2,31 @@
 // Checklist app
 
 
+// version and author from styles pate
+const root = document.querySelector(":root");
+let version =  getComputedStyle(root).getPropertyValue("--version");
+let author =  getComputedStyle(root).getPropertyValue("--author");
+let title =  getComputedStyle(root).getPropertyValue("--title");
+
+// write version to footer
+const authorDisplay = document.querySelector(".author");
+authorDisplay.innerHTML = author;
+const yearDisplay = document.querySelector(".year");
+yearDisplay.innerHTML = new Date().getFullYear();
+const versionDisplay = document.querySelector(".version");
+versionDisplay.innerHTML = version;
+
 // set document title
-document.title = "New Computer Setup Checklist";
+const pageTitle = document.querySelector(".page-title");
+pageTitle.innerHTML = title;
+// tab title
+document.title = title + " " + version;
+
 // Main Container reference
 const containerMain = document.querySelector(".container-main");
 // html reference 
 const clearForm = document.querySelector("#clear-form");
+const clearChecks = document.querySelector("#clear-checks");	
 // variable to populate each section
 let populatedList = "";
 // array of check boxes
@@ -146,6 +165,26 @@ function getCheckLocalStorage(){
 };
 
 
+// clear check boxes only
+clearChecks.addEventListener("click", () =>{
+	//sets all the checkboxes to unchecked
+	for(let i = 0; i < checkBoxState.length; i++){
+		if(checkBoxState[i].ischecked == 1){
+			document.querySelector(`#${checkBoxState[i].id}`).checked = false;
+		}
+	};
+	// removes grayed-out class
+	let removeGray = document.querySelectorAll(".grayed-out");
+	for(let j = 0; j < removeGray.length; j++){
+		removeGray[j].classList.remove("grayed-out");
+	};
+	// sets checkBoxState to everything 0
+	for(let k = 0; k < checkBoxState.length; k++){
+		checkBoxState[k].ischecked = 0;
+	};
+	// sets new local storage
+	localStorage.setItem("NewComputerSetup", JSON.stringify(checkBoxState));
+});
 // clear button
 clearForm.addEventListener("click", () =>{
 	//sets all the checkboxes to unchecked
@@ -156,14 +195,15 @@ clearForm.addEventListener("click", () =>{
 	};
 	// removes grayed-out class
 	let removeGray = document.querySelectorAll(".grayed-out");
-	for(let i = 0; i < removeGray.length; i++){
-		removeGray[i].classList.remove("grayed-out");
-	}
-	
+	for(let j = 0; j < removeGray.length; j++){
+		removeGray[j].classList.remove("grayed-out");
+	};
+
+	// clears checkBoxState
+	checkBoxState = [];
 	// removes localStorage
 	localStorage.removeItem("NewComputerSetup");
 });
-
 
 // takes input from array to populate fields
 function moduleInput(sectionTitle, moduleClassRef, sectionColor, module){
