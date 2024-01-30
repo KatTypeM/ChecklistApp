@@ -3,24 +3,18 @@ Theme Name: Checklist App
 Author: Jason DeBay (Kat Type M Productions)
 Author URI: https://kattypem.com
 Theme URI: https://kattypem.com
-Description: Checklist app with data modules
-Version: 1.1.0
-*/
-
-/*
-v1.0.0 Initial release
-v1.1.0 Update added clear check button, removed error for reset app button by clearing checkBoxState, added title version to js set from styles
+Description: Checklist app with data module
+Version: 1.0.0
 */
  
  /* test styles css */
- *{
+*{
 	margin: 0;
 	padding: 0;
 }
 :root{
-	--version: v1.1.0;
-	--author: Kat Type M Productions;
-	--title: New Computer Setup;					 
+	--test1: red;
+	--test2: blue;
 }
 body{
 	text-align: center;
@@ -61,7 +55,7 @@ a:hover{
 .container-section{
 	display: flex;
 	flex-direction: column;
-	text-align: left;			
+	text-align: left;
 	padding: 5px 5px 5px 10px;
 	width: 100%;
 }
@@ -97,32 +91,30 @@ input.chkbox{
 	transform: scale(1.25);
 }
 .section-clear-form{
-	display: flex;
-	flex-direction: row;		   	 
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 10px;
 }
 
 /* clear form button */
-.btn-standard{
+#clear-form{
 	width: 200px;
 	padding: 5px;
-	margin: 0 10px;			
 	border-radius: 8px;
 	box-shadow: 3px 3px 5px gray;
 	background-color: gray;
 	color: black;
 }
-.btn-standard:hover{
+#clear-form:hover{
 	background-color: white;
 	color: black;
+
 	transition: all 0.2s ease-in-out;
 }
-.btn-standard:active{
+#clear-form:active{
 	background-color: gray;
 	color: black;
-	box-shadow: 0px 0px 0px gray;						
+	box-shadow: 0px 0px 0px gray;
 }
 
 /* footer */
